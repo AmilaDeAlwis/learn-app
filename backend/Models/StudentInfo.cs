@@ -24,7 +24,7 @@ namespace backend.Models
         public bool IsDateOfBirthVisible { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public bool IsGenderVisible { get; set; }
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
         
         // Reference to the Course ID
         public string CourseId { get; set; }
