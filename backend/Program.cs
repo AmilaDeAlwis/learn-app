@@ -22,6 +22,9 @@ builder.Services.AddSingleton<CosmosClient>(serviceProvider =>
 
 // Add services to the container.
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IStudentInfoRepository, StudentInfoRepository>();
+builder.Services.AddScoped<ICustomQuestionRepository, CustomQuestionRepository>();
+builder.Services.AddScoped<IAnswerOptionRepository, AnswerOptionRepository>();
 
 builder.Services.AddControllers();
 
