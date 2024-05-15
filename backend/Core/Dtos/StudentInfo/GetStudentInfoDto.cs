@@ -3,10 +3,11 @@ using Newtonsoft.Json;
 
 namespace backend.Core.Dtos.StudentInfo
 {
+    // StudentInfo model encapsulation
     public class GetStudentInfoDto
     {
         [JsonProperty("id")]
-        public string Id { get; set; } // Unique identifier for the student info document
+        public string Id { get; set; } // Unique identifier
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

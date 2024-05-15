@@ -4,8 +4,9 @@ namespace backend.Core.Dtos.Course
 {
     public class GetCourseDto
     {
+        // Course model encapsulation
         [JsonProperty("id")]
-        public string Id { get; set; } // Unique identifier for the course document
+        public string Id { get; set; } // Unique identifier
         public string Title { get; set; }
         public string Description { get; set; }
         // List of StudentInfo IDs to show which students are enrolled

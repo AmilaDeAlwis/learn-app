@@ -31,7 +31,7 @@ namespace backend.Core.Repository
         }
         public async Task<CustomQuestion> GetByIdAsync(string id)
         {
-            // Retrieve a custom question by its ID
+            // Get a custom question by its ID
             try
             {
                 ItemResponse<CustomQuestion> response = await _container.ReadItemAsync<CustomQuestion>(id, new PartitionKey(id));
@@ -44,16 +44,19 @@ namespace backend.Core.Repository
         }
         public async Task AddAsync(CustomQuestion customquestion)
         {
+            // Post a custom question by its ID
             await _container.CreateItemAsync(customquestion, new PartitionKey(customquestion.Id));
         }
 
         public async Task UpdateAsync(string id, CustomQuestion customquestion)
         {
+            // Update a custom question by its ID
             await _container.UpsertItemAsync(customquestion, new PartitionKey(id));
         }
 
         public async Task DeleteAsync(string id)
         {
+            // Delete a custom question by its ID
             await _container.DeleteItemAsync<CustomQuestion>(id, new PartitionKey(id));
         }
     }

@@ -4,6 +4,7 @@ namespace backend.Core.Dtos.Course
 {
     public class CreateCourseDto
     {
+        // Course model encapsulation
         [Required]
         [StringLength(100, ErrorMessage = "Title length can't be more than 100 characters.")]
         public string Title { get; set; }

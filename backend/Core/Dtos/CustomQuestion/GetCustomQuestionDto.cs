@@ -6,8 +6,9 @@ namespace backend.Core.Dtos.CustomQuestion
 {
     public class GetCustomQuestionDto
     {
+        // CustomQuestion model encapsulation
         [JsonProperty("id")]
-        public string Id { get; set; } // Unique identifier for the custom question document
+        public string Id { get; set; } // Unique identifier
         public string QuestionText { get; set; }
         public QuestionType QuestionType { get; set; }
 

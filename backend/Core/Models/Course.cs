@@ -6,7 +6,7 @@ namespace backend.Core.Models
     public class Course
     {
         [JsonProperty("id")]
-        public string Id { get; set; } // Unique identifier for the course document
+        public string Id { get; set; } // Unique identifier
         [Required]
         [StringLength(100)]
         public string Title { get; set; }

@@ -31,7 +31,7 @@ namespace backend.Core.Repository
         }
         public async Task<AnswerOption> GetByIdAsync(string id)
         {
-            // Retrieve a answer option by its ID
+            // Get an answer option by its ID
             try
             {
                 ItemResponse<AnswerOption> response = await _container.ReadItemAsync<AnswerOption>(id, new PartitionKey(id));
@@ -44,16 +44,19 @@ namespace backend.Core.Repository
         }
         public async Task AddAsync(AnswerOption answerOption)
         {
+            // Post an answer option
             await _container.CreateItemAsync(answerOption, new PartitionKey(answerOption.Id));
         }
 
         public async Task UpdateAsync(string id, AnswerOption answerOption)
         {
+            // Update an answer option by its ID
             await _container.UpsertItemAsync(answerOption, new PartitionKey(id));
         }
 
         public async Task DeleteAsync(string id)
         {
+            // Delete an answer option by its ID
             await _container.DeleteItemAsync<AnswerOption>(id, new PartitionKey(id));
         }
     }

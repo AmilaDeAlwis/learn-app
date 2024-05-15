@@ -31,7 +31,7 @@ namespace backend.Core.Repository
         }
         public async Task<Course> GetByIdAsync(string id)
         {
-            // Retrieve a course by its ID
+            // Get a course by its ID
             try
             {
                 ItemResponse<Course> response = await _container.ReadItemAsync<Course>(id, new PartitionKey(id));
@@ -44,16 +44,19 @@ namespace backend.Core.Repository
         }
         public async Task AddAsync(Course course)
         {
+            // Post a course
             await _container.CreateItemAsync(course, new PartitionKey(course.Id));
         }
 
         public async Task UpdateAsync(string id, Course course)
         {
+            // Update a course by its ID
             await _container.UpsertItemAsync(course, new PartitionKey(id));
         }
 
         public async Task DeleteAsync(string id)
         {
+            // Delete a course by its ID
             await _container.DeleteItemAsync<Course>(id, new PartitionKey(id));
         }
     }

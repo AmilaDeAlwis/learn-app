@@ -5,6 +5,7 @@ namespace backend.Core.Dtos.StudentInfo
 {
     public class CreateStudentInfoDto
     {
+        // StudentInfo model encapsulation
         [Required]
         public string FirstName { get; set; }
         [Required]

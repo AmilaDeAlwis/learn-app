@@ -31,7 +31,7 @@ namespace backend.Core.Repository
         }
         public async Task<StudentInfo> GetByIdAsync(string id)
         {
-            // Retrieve a studenti nfo by its ID
+            // Get a studenti nfo by its ID
             try
             {
                 ItemResponse<StudentInfo> response = await _container.ReadItemAsync<StudentInfo>(id, new PartitionKey(id));
@@ -44,16 +44,19 @@ namespace backend.Core.Repository
         }
         public async Task AddAsync(StudentInfo studentinfo)
         {
+            // Post a studenti nfo by its ID
             await _container.CreateItemAsync(studentinfo, new PartitionKey(studentinfo.Id));
         }
 
         public async Task UpdateAsync(string id, StudentInfo studentinfo)
         {
+            // Update a studenti nfo by its ID
             await _container.UpsertItemAsync(studentinfo, new PartitionKey(id));
         }
 
         public async Task DeleteAsync(string id)
         {
+            // Delete a studenti nfo by its ID
             await _container.DeleteItemAsync<StudentInfo>(id, new PartitionKey(id));
         }
     }

@@ -7,7 +7,7 @@ namespace backend.Core.Models
     public class StudentInfo
     {
         [JsonProperty("id")]
-        public string Id { get; set; } // Unique identifier for the student info document
+        public string Id { get; set; } // Unique identifier
         [Required]
         public string FirstName { get; set; }
         [Required]
