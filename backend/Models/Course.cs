@@ -12,9 +12,9 @@ namespace backend.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-        // Navigation property for related StudentInfo entries
-        public ICollection<StudentInfo> StudentInfos { get; set; }
-        // Navigation property for related CustomQuestions entries
-        public ICollection<CustomQuestion> CustomQuestions { get; set; }
+        // Include a list of StudentInfo IDs for referencing
+        public List<string> StudentInfoIds { get; set; }
+        // Include a list of CustomQuestion IDs for referencing
+        public List<string> CustomQuestionIds { get; set; }
     }
 }
