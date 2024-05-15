@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using backend.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.Models
 {
