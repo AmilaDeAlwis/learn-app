@@ -1,6 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Azure.Cosmos;
+using backend.Interfaces;
+using backend.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +20,16 @@ builder.Services.AddSingleton<CosmosClient>(serviceProvider =>
     return new CosmosClient(cosmosDbEndpoint, cosmosDbKey);
 });
 
+// Add services to the container.
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 var app = builder.Build();
 
