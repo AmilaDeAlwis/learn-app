@@ -1,12 +1,12 @@
-﻿using backend.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using backend.Interfaces;
 using AutoMapper;
 using backend.Repository;
-using backend.Dtos.CustomQuestion;
+using backend.Core.Dtos.CustomQuestion;
+using backend.Core.Interfaces;
+using backend.Core.Models;
 
 [ApiController]
 [Route("[controller]")]
@@ -31,7 +31,7 @@ public class CustomQuestionController : ControllerBase
     }
 
     // GET: /CustomQuestion/{id}
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetCustomQuestionById(string id)
     {
         var customQuestion = await _customQuestionRepository.GetByIdAsync(id);
@@ -50,7 +50,7 @@ public class CustomQuestionController : ControllerBase
         var customQuestion = _mapper.Map<CustomQuestion>(customQuestionDto);
         customQuestion.Id = Guid.NewGuid().ToString(); // Generate a new unique identifier
         await _customQuestionRepository.AddAsync(customQuestion);
-        return CreatedAtAction(nameof(GetCustomQuestionById), new { id = customQuestion.Id }, _mapper.Map<CreateCustomQuestionDto>(customQuestion));
+        return CreatedAtAction(nameof(GetCustomQuestionById), new { id = customQuestion.Id }, _mapper.Map<GetCustomQuestionDto>(customQuestion));
     }
 
     // PUT: /CouCustomQuestionrse/{id}

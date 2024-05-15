@@ -1,12 +1,12 @@
-﻿using backend.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using backend.Dtos.StudentInfo;
-using backend.Interfaces;
 using AutoMapper;
 using backend.Repository;
+using backend.Core.Dtos.StudentInfo;
+using backend.Core.Interfaces;
+using backend.Core.Models;
 
 [ApiController]
 [Route("[controller]")]
@@ -31,7 +31,7 @@ public class StudentInfoController : ControllerBase
     }
 
     // GET: /StudentInfo/{id}
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetStudentInfoById(string id)
     {
         var course = await _studentInfoRepository.GetByIdAsync(id);
@@ -50,7 +50,7 @@ public class StudentInfoController : ControllerBase
         var studentInfo = _mapper.Map<StudentInfo>(studentInfoDto);
         studentInfo.Id = Guid.NewGuid().ToString(); // Generate a new unique identifier
         await _studentInfoRepository.AddAsync(studentInfo);
-        return CreatedAtAction(nameof(GetStudentInfoById), new { id = studentInfo.Id }, _mapper.Map<CreateStudentInfoDto>(studentInfo));
+        return CreatedAtAction(nameof(GetStudentInfoById), new { id = studentInfo.Id }, _mapper.Map<GetStudentInfoDto>(studentInfo));
     }
 
     // PUT: /StudentInfo/{id}

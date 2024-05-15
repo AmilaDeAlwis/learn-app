@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Azure.Cosmos;
-using backend.Interfaces;
-using backend.Repository;
+using backend.Core.Interfaces;
+using backend.Core.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

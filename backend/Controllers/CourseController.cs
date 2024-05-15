@@ -1,12 +1,12 @@
-﻿using backend.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using backend.Dtos.Course;
 using backend.Repository;
-using backend.Interfaces;
 using AutoMapper;
+using backend.Core.Dtos.Course;
+using backend.Core.Interfaces;
+using backend.Core.Models;
 
 [ApiController]
 [Route("[controller]")]
@@ -31,7 +31,7 @@ public class CourseController : ControllerBase
     }
 
     // GET: /Course/{id}
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetCourseById(string id)
     {
         var course = await _courseRepository.GetByIdAsync(id);
@@ -47,10 +47,10 @@ public class CourseController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateCourse([FromBody] CreateCourseDto courseDto)
     {
-        var course = _mapper.Map<Course>(courseDto);
+        Course course = _mapper.Map<Course>(courseDto);
         course.Id = Guid.NewGuid().ToString(); // Generate a new unique identifier
         await _courseRepository.AddAsync(course);
-        return CreatedAtAction(nameof(GetCourseById), new { id = course.Id }, _mapper.Map<CreateCourseDto>(course));
+        return CreatedAtAction(nameof(GetCourseById), new { id = course.Id }, _mapper.Map<GetCourseDto>(course));
     }
 
     // PUT: /Course/{id}

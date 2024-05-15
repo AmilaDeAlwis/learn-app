@@ -1,12 +1,12 @@
-﻿using backend.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using backend.Interfaces;
 using AutoMapper;
 using backend.Repository;
-using backend.Dtos.AnswerOption;
+using backend.Core.Dtos.AnswerOption;
+using backend.Core.Interfaces;
+using backend.Core.Models;
 
 [ApiController]
 [Route("[controller]")]
@@ -31,7 +31,7 @@ public class AnswerOptionController : ControllerBase
     }
 
     // GET: /AnswerOption/{id}
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetAnswerOptionById(string id)
     {
         var answerOption = await _answerOptionRepository.GetByIdAsync(id);
@@ -55,7 +55,7 @@ public class AnswerOptionController : ControllerBase
 
     // PUT: /AnswerOption/{id}
     [HttpPut]
-    public async Task<IActionResult> UpdateAnswerOption(string id, [FromBody] CreateAnswerOptionDto answerOptionDto)
+    public async Task<IActionResult> UpdateAnswerOption(string id, [FromBody] GetAnswerOptionDto answerOptionDto)
     {
         var answerOptionToUpdate = await _answerOptionRepository.GetByIdAsync(id);
         if (answerOptionToUpdate == null)
